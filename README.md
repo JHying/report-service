@@ -10,7 +10,7 @@ Jxls 報表製作 demo
 
 4. 執行：jar as service
 
-5. 主框架：spring boot 2.7.12
+5. 主框架：spring boot 2.7.17
 
 --------------------------------
 ### Detail
