@@ -11,7 +11,7 @@ import org.springframework.web.filter.CorsFilter;
 import tw.hyin.java.utils.Log;
 
 /**
- * cors - 允許所有跨域請求設定
+ * cors
  */
 @Profile("dev")
 @Configuration
@@ -22,7 +22,6 @@ public class CorsConfig {
         corsConfiguration.addAllowedOrigin("*");
         corsConfiguration.addAllowedHeader("*");
         corsConfiguration.addAllowedMethod("*");
-        //        corsConfiguration.setAllowCredentials(true);//允許cookies跨域
         Log.info("CORS setting complete.");
         return corsConfiguration;
     }
@@ -32,7 +31,6 @@ public class CorsConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", buildConfig());
         FilterRegistrationBean<CorsFilter> filterRegistrationBean = new FilterRegistrationBean<>(new CorsFilter(source));
-        //將這個過濾器設定為最優先等級
         filterRegistrationBean.setOrder(Ordered.HIGHEST_PRECEDENCE);
         return filterRegistrationBean;
     }

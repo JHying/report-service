@@ -1,16 +1,17 @@
 package tw.hyin.demo.controller;
 
 import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import org.apache.poi.ss.formula.functions.T;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import tw.hyin.demo.service.ReportService;
 import tw.hyin.demo.utils.JxlsUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.InputStream;
@@ -26,9 +27,8 @@ import java.util.Map;
  */
 @RestController
 @ResponseBody
-@RequestMapping("/report")
 @RequiredArgsConstructor
-public class ReportController {
+public class ReportController extends FileBaseController {
 
     @Value("classpath:templates/pretestSummary.xlsx")
     Resource pretestSummaryFile;
@@ -36,9 +36,18 @@ public class ReportController {
     private final ReportService reportService;
 
     @SneakyThrows
-    @ApiOperation(value = "下載前測總表")
-    @GetMapping(value = "/pretest/summary")
-    public void exportPretestExcel(HttpServletResponse response) {
+    @ApiOperation(value = "word report")
+    @PostMapping(value = "/{templateName}", produces = {MediaType.APPLICATION_OCTET_STREAM_VALUE,
+            MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> getReport(@PathVariable(value = "templateName") String templateName,
+                                       @RequestBody T object) {
+        return super.createPDF(object, templateName + ".docx", true, null);
+    }
+
+    @SneakyThrows
+    @ApiOperation(value = "excel report")
+    @GetMapping(value = "/excel")
+    public void exportExcel(HttpServletResponse response) {
         InputStream is = pretestSummaryFile.getInputStream();
         String fileName = "download.xlsx";
         response.setHeader("Content-Disposition", "inline; filename=" + URLEncoder.encode(fileName, StandardCharsets.UTF_8));

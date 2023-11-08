@@ -13,13 +13,13 @@ import tw.hyin.java.utils.config.SwaggerCreater;
  * @Description ./swagger-ui/#/
  */
 @Configuration
-@EnableOpenApi //取代@EnableSwagger2
-@Import(SpringDataRestConfiguration.class)//取得 spring-data-rest 自動產生的 API
+@EnableOpenApi
+@Import(SpringDataRestConfiguration.class)
 public class SwaggerConfig {
 
     @Bean
     public Docket createRestApi() {
-        return SwaggerCreater.createSwaggerDefault("報表下載 DEMO", "1.0");
+        return SwaggerCreater.createSwaggerDefault("REPORT AND FILE MANIPULATE DEMO", "1.0");
     }
 
 }

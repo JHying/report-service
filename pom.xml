@@ -101,6 +101,7 @@
         <!--analysis with sonar-->
         <sonar.qualitygate.wait>true</sonar.qualitygate.wait>
         <spring-cloud.version>2021.0.4</spring-cloud.version>
+        <xdocreport.version>2.0.4</xdocreport.version>
     </properties>
 
     <dependencyManagement>
@@ -198,7 +199,7 @@
         <dependency>
             <groupId>tw.hyin.java</groupId>
             <artifactId>hyin-shared-utils</artifactId>
-            <version>2.0.2</version>
+            <version>2.0.6</version>
         </dependency>
 
         <!-- shared-utils -->
@@ -212,7 +213,7 @@
         <dependency>
             <groupId>org.jxls</groupId>
             <artifactId>jxls</artifactId>
-            <version>2.12.0</version>
+            <version>2.13.0</version>
             <exclusions>
                 <exclusion>
                     <groupId>junit</groupId>
@@ -223,12 +224,65 @@
         <dependency>
             <groupId>org.jxls</groupId>
             <artifactId>jxls-poi</artifactId>
-            <version>2.12.0</version>
+            <version>2.13.0</version>
         </dependency>
         <dependency>
             <groupId>org.jxls</groupId>
             <artifactId>jxls-jexcel</artifactId>
             <version>1.0.9</version>
+        </dependency>
+
+        <!-- xDocReport -->
+        <!--Start requires LibreOffice to be installed on the instance -->
+        <dependency>
+            <groupId>org.jodconverter</groupId>
+            <artifactId>jodconverter-local</artifactId>
+            <version>4.4.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jodconverter</groupId>
+            <artifactId>jodconverter-spring-boot-starter</artifactId>
+            <version>4.4.6</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>fr.opensagres.xdocreport</groupId>
+            <artifactId>fr.opensagres.xdocreport.template.freemarker</artifactId>
+            <version>${xdocreport.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>fr.opensagres.xdocreport</groupId>
+            <artifactId>fr.opensagres.xdocreport.document.odt</artifactId>
+            <version>${xdocreport.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>fr.opensagres.xdocreport</groupId>
+            <artifactId>fr.opensagres.xdocreport.document.docx</artifactId>
+            <version>${xdocreport.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>fr.opensagres.xdocreport</groupId>
+            <artifactId>fr.opensagres.xdocreport.converter.odt.odfdom</artifactId>
+            <version>${xdocreport.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>fr.opensagres.xdocreport</groupId>
+            <artifactId>fr.opensagres.xdocreport.converter.docx.xwpf</artifactId>
+            <version>${xdocreport.version}</version>
+        </dependency>
+        <!-- End requires LibreOffice to be installed on the instance -->
+
+        <!--浮水印 -->
+        <!-- https://mvnrepository.com/artifact/com.itextpdf/itextpdf -->
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itextpdf</artifactId>
+            <version>5.5.13.3</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-devtools -->

@@ -83,7 +83,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         List<String> errors = new ArrayList<>();
         errors.add("Internal Server Error");
         errors.add(e.getMessage());
-        Log.error("發生錯誤：" + e.getMessage());
+        Log.error("ERROR OCCURRED: " + e.getMessage());
         return new ResponseEntity(ResponseObj.builder().status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .errors(errors).build(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
@@ -95,7 +95,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         List<String> errors = new ArrayList<>();
         errors.add("Authentication Error");
         errors.add(e.getMessage());
-        Log.error("認證錯誤：" + e.getMessage());
+        Log.error("ERROR OCCURRED: " + e.getMessage());
         return new ResponseEntity(ResponseObj.builder().status(HttpStatus.FORBIDDEN)
                 .errors(errors).build(), HttpStatus.FORBIDDEN);
     }

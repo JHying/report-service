@@ -1,7 +1,7 @@
 package tw.hyin.demo.dto.report;
 
 import lombok.Data;
-import tw.hyin.demo.entity.PreTest;
+import tw.hyin.demo.entity.UploadRecord;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -12,12 +12,12 @@ import java.util.List;
  * @description
  */
 @Data
-public class PreTestSummary implements Serializable {
+public class UploadRecordSummary implements Serializable {
 
     private Date exportTime;
     private Integer dataSize;
     private Integer userCount;
     private String sheetName;
-    private List<PreTest> preTestData;
+    private List<UploadRecord> uploadRecords;
 
 }
